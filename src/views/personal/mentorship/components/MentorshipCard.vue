@@ -1,9 +1,9 @@
 <template>
-  <v-card class="card-image">
+  <v-card class="card-image" @click="mentorshipPage(mentorship.name, mentorship.id)"> 
     <v-img src="../../../../assets/img/mentorship-card.png">
     <div class="blocText">
       <v-card-text class="cardText">
-      {{ formatText(mentorship.name) }}
+      {{ formatName(mentorship.name) }}
     </v-card-text>
     </div>
     </v-img>
@@ -20,8 +20,15 @@ export default {
   },
 
   methods:{
-    formatText(text){
+    mentorshipPage(name, id){
+      this.$router.push(`/mentorship/${this.formatRoute(name)}/${id}`)
+    },
+    formatName(text){
       return text.replace("-", "")
+    },
+    formatRoute(text){
+      let newText = text.toLowerCase()
+      return newText.replaceAll(" ", "")
     }
   }
 }

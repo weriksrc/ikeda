@@ -12,7 +12,7 @@
         </v-avatar>
       </div>
     </v-img>
-    <v-card class="limited-height">
+    <v-card class="limited-height" :color="changeColor()">
       <router-view></router-view>
     </v-card>
     <BottomNavigation v-if="false"/>
@@ -39,6 +39,9 @@ export default {
   },
 
   methods: {
+    changeColor(){
+      return this.$router.history.current.name == 'MentorshipLessons' ? '#101010' : '#FFFFFF'
+    },
     chageImage(route){
       return this.imagePage[route].image
     },

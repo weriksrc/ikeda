@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     async login() {
-      console.log("this.formLogin", this.formLogin);
       let { data } = await auth().store(this.formLogin, {
         notification: true,
         message: {
@@ -59,7 +58,6 @@ export default {
           error: "Credenciais inválidas",
         },
       });
-      console.log("data", data);
       this.$store.dispatch("auth", data.token);
       this.$store.dispatch("userData", data.user)
       this.$router.push("/evolution");

@@ -17,6 +17,12 @@ const chageImage = {
         Mentorship:{
           image: require('@/assets/img/mentoria.png')
         },
+        MentorshipLessons:{
+          image: require('@/assets/img/mentoria.png')
+        },
+        MentorshipVideo:{
+          image: require('@/assets/img/mentoria.png')
+        },
         Users:{
           image: require('@/assets/img/alunos.png')
         }
