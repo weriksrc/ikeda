@@ -3,7 +3,7 @@
     <v-img src="../../../../assets/img/mentorship-card.png">
     <div class="blocText">
       <v-card-text class="cardText">
-      {{ formatName(mentorship.name) }}
+      {{ formatText(mentorship.name) }}
     </v-card-text>
     </div>
     </v-img>
@@ -23,7 +23,7 @@ export default {
     mentorshipPage(name, id){
       this.$router.push(`/mentorship/${this.formatRoute(name)}/${id}`)
     },
-    formatName(text){
+    formatText(text){
       return text.replace("-", "")
     },
     formatRoute(text){

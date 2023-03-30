@@ -8,6 +8,12 @@ const chageImage = {
         Lessons:{
           image: require('@/assets/img/treinos.png')
         },
+        LessonsMentorshipLessons:{
+          image: require('@/assets/img/treinos.png')
+        },
+        LessonsVideo:{
+          image: require('@/assets/img/treinos.png')
+        },
         Profile:{
           image: require('@/assets/img/perfil.png')
         },

@@ -40,7 +40,7 @@ export default {
 
   methods: {
     changeColor(){
-      return this.$router.history.current.name == 'MentorshipLessons' ? '#101010' : '#FFFFFF'
+      return this.$router.history.current.name == 'MentorshipLessons' || this.$router.history.current.name == 'LessonsMentorshipLessons'  ? '#101010' : '#FFFFFF'
     },
     chageImage(route){
       return this.imagePage[route].image

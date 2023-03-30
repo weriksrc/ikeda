@@ -10,15 +10,12 @@ export default [
     name: "Lessons",
     component: () => import("@/views/user/lessons/Index"),
     // meta: { isAuthenticated: true }
-    children: [
-      {
-        path: ":idVideo",
-        name: "avaliacao-campanha",
-        // component: () =>
-        //   import("@/views/campanha/aprovacao/AvaliacaoCampanha"),
-        meta: { requiresAuth: true }
-      }
-    ]
+  },
+  {
+    path: "/lessons/:mentorshipName/:mentorshipId",
+    name: "LessonsMentorshipLessons",
+    component: () => import("@/views/user/lessons/MentorshipLessons"),
+    // meta: { isAuthenticated: true }
   },
   {
     path: "/profile",
