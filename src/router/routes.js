@@ -9,7 +9,7 @@ export default [
     name: "Home",
     redirect: "/evolution",
     component: System,
-    // meta: { isAuthenticated: true },
+    meta: { isAuthenticated: true },
     children: [...Personal, ...User]
   },
   ...Login,
