@@ -8,7 +8,7 @@
           </v-icon>
         </v-avatar>
         <p class="ma-0 mt-2 subtitle-2">{{ formatName(name) }}</p>
-        <p class="ma-0 mt-2 subtitle-2 font-weight-bold">{{ status ? 'Ativo' : 'Inativo' }}</p>
+        <p :class="classAtivo(status)">{{ status ? 'Ativo' : 'Inativo' }}</p>
       </div>
     </v-img>
   </v-card>
@@ -22,6 +22,10 @@ export default {
     formatName(name){
       let arrayName = name.split(" ")
       return arrayName[1] == 'de' ? `${arrayName[0]}` + ` ${arrayName[2]}` : `${arrayName[0]}` + ` ${arrayName[1] || ''} `
+    },
+
+    classAtivo(status){
+      return status ? 'ma-0 mt-2 subtitle-2 font-weight-bold green--text' :'ma-0 mt-2 subtitle-2 font-weight-bold red--text'
     }
   }
 }
@@ -34,6 +38,7 @@ export default {
 
 .user-information{
   position: absolute;
+  text-align: center;
   width: 100%;
 }
 
