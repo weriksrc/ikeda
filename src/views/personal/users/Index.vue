@@ -1,9 +1,17 @@
 <template>
-  <v-row class="pa-4">
-    <v-col cols="4" v-for="user in userData" :key="user.id">
-      <UserCard :id="user.id" :status="user.is_active" :name="user.name"/>
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-text-field
+      class="px-4 py-0 searsh-user"
+      regular
+      label="Aluno"
+      prepend-inner-icon="mdi-magnify"
+    ></v-text-field>
+    <v-row class="px-4 pb-4 pt-0">
+      <v-col cols="4" v-for="user in userData" :key="user.id">
+        <UserCard :id="user.id" :status="user.is_active" :name="user.name"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -25,6 +33,7 @@ export default {
     async fetchUsers(){
       let { data } = await user().show();
       this.userData = data
+      console.log("this.userData", this.userData);
     }
   },
 
@@ -33,4 +42,7 @@ export default {
   }
 }
 </script>
+
+<style>
+</style>
 
