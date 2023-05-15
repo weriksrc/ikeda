@@ -108,6 +108,14 @@
         background-color="#EEEEEE"
       ></v-text-field>
     </v-col>
+    <v-col cols="12" class="d-flex justify-end">
+      <v-btn
+        depressed
+        color="#ffd103"
+      >
+        Salvar
+      </v-btn>
+    </v-col>
   </v-row>
 </template>
 
