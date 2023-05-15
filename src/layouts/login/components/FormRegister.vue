@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <v-form ref="formCreate">
      <v-row>
         <v-col cols="12" class="pt-0 pb-0">
           <v-text-field
@@ -59,12 +59,12 @@
           </v-radio-group>
         </v-col>
         <v-col cols="12">
-          <v-btn width="100%" color="#EEEEEE" depressed rounded>
+          <v-btn width="100%" color="#EEEEEE" depressed rounded @click="createUser()">
             Bora lançar o shape
           </v-btn>
         </v-col>
      </v-row>
-  </form>
+  </v-form>
 </template>
 
 <script>
@@ -77,18 +77,20 @@ export default {
       rules: {
         required: (value) => !!value || "Campo obrigatório.",
         email: (v) => /.+@.+/.test(v) || "E-mail não é válido",
-        password: (value) => value.length >= 8 || "Min. 8 caracteres",
+        password: (v) => (v && v.length <= 8) || "Min. 8 caracteres",
       },
     }
   },
 
   methods:{
   async createUser() {
-      if (!this.$refs.formCreate.validate()) return;
-      await user().store(this.formUser, {
-        notification: true,
-        message: { success: "Pronto! Bem vindo ao #TeamIkeda" },
-      });
+    const validadeForm = this.$refs.formCreate.validate()
+      if (validadeForm){
+        await user().store(this.formUser, {
+          notification: true,
+          message: { success: "Pronto! Bem vindo ao #TeamIkeda" },
+        });
+      }
     },
   }
 
