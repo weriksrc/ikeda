@@ -2,7 +2,7 @@
   <v-row class="pt-5">
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="triceps"
+        v-model="form.triceps"
         label="Tríceps"
         placeholder="Tríceps"
         filled
@@ -14,7 +14,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="subscapular"
+        v-model="form.subscapular"
         label="Subescapular"
         placeholder="Subescapular"
         filled
@@ -26,7 +26,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="suprailiac"
+        v-model="form.suprailiac"
         label="Suprailiaca"
         placeholder="Suprailiaca"
         filled
@@ -38,7 +38,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="abdomen"
+        v-model="form.abdomen"
         label="Abdômen"
         placeholder="Abdômen"
         filled
@@ -61,7 +61,15 @@
 
 <script>
 export default {
+  data(){
+    return{
+      form:{}
+    }
+  },
 
+  methods:{
+
+  }
 }
 </script>
 

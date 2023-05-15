@@ -2,7 +2,7 @@
   <v-row class="pt-5">
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="right_arm"
+        v-model="form.right_arm"
         label="Braço Direito"
         placeholder="Braço Direito"
         filled
@@ -14,7 +14,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="left_arm"
+        v-model="form.left_arm"
         label="Braço Esquerdo"
         placeholder="Braço Esquerdo"
         filled
@@ -26,7 +26,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="right_forearm"
+        v-model="form.right_forearm"
         label="Antebraço Direito"
         placeholder="Antebraço Direito"
         filled
@@ -38,7 +38,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="left_forearm"
+        v-model="form.left_forearm"
         label="Antebraço Esquerdo"
         placeholder="Antebraço Esquerdo"
         filled
@@ -50,7 +50,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="hip"
+        v-model="form.hip"
         label="Quadril"
         placeholder="Quadril"
         filled
@@ -62,7 +62,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="waist"
+        v-model="form.waist"
         label="Cintura"
         placeholder="Cintura"
         filled
@@ -74,7 +74,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="right_thigh"
+        v-model="form.right_thigh"
         label="Coxa Direita"
         placeholder="Coxa Direita"
         filled
@@ -86,7 +86,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="left_thigh"
+        v-model="form.left_thigh"
         label="Coxa Esquerda"
         placeholder="Coxa Esquerda"
         filled
@@ -98,7 +98,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="right_calf"
+        v-model="form.right_calf"
         label="Panturrilha Direita"
         placeholder="Panturrilha Direita"
         filled
@@ -110,7 +110,7 @@
     </v-col>
     <v-col cols="12" class="py-0">
       <v-text-field
-        v-model="left_calf"
+        v-model="form.left_calf"
         label="Panturrilha Esquerda"
         placeholder="Panturrilha Esquerda"
         filled
@@ -133,7 +133,15 @@
 
 <script>
 export default {
+  data(){
+    return{
+      form:{}
+    }
+  },
 
+  methods:{
+
+  }
 }
 </script>
 
