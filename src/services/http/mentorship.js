@@ -3,7 +3,9 @@ import BaseServiceHttp from "./baseService";
 class MentorshipHttp extends BaseServiceHttp {
   constructor(id) {
     const resource = "/mentorship";
-    const relationship = {};
+    const relationship = {
+      week: "week"
+    };
     const baseURL = process.env.VUE_APP_ROOT_API;
     super(id, resource, relationship, baseURL);
   }
