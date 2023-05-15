@@ -18,6 +18,10 @@
       <v-card class="mx-3 my-4 px-3 form-card">
         <v-card-title class="subtitle-1 grey--text pb-0" color="#ffffff">Dobras Cutaneas (mm)</v-card-title>
         <DobrasCutaneas />
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <v-card class="mx-3 my-4 px-3 form-card">
         <v-card-title class="subtitle-1 grey--text pb-0" color="#ffffff">Circunferência (cm)</v-card-title>
         <CircumferencesForm />
       </v-card>
