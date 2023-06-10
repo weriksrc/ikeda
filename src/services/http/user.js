@@ -14,6 +14,17 @@ class UserHttp extends BaseServiceHttp {
     const baseURL = process.env.VUE_APP_ROOT_API;
     super(id, resource, relationship, baseURL);
   }
+  create(data) {
+    return this._http.post(
+      'https://ikedapersonal.com.br/api/v2/user',
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+  }
 }
 
 export default (id) => new UserHttp(id);

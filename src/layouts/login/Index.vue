@@ -30,7 +30,7 @@
             <FormLogin class="mt-10 mb-5"/>
           </v-tab-item>
           <v-tab-item>
-            <FormRegister class="mt-10 mb-5"/>
+            <FormRegister class="mt-10 mb-5" @tabValue="tab = 0"/>
           </v-tab-item>
         </v-tabs-items>
         

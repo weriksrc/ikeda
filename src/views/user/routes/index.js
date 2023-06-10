@@ -2,7 +2,7 @@ export default [
   {
     path: "/evolution",
     name: "Evolution",
-    component: () => import("@/views/HomeView"),
+    component: () => import("@/views/user/evolution/Index"),
     meta: { isAuthenticated: true }
   },
   {

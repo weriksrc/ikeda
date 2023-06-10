@@ -4,7 +4,7 @@
     color="#FFD103"
     class="bottom-navigation"
   >
-    <v-btn icon to="/evolution">
+    <v-btn icon to="/dashboard">
       <span>Dashboard</span>
 
       <v-icon>mdi-home-analytics</v-icon>

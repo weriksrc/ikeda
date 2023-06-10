@@ -43,7 +43,7 @@
         </v-col>
         <v-col cols="12" class="pt-0 pb-0">
           <v-radio-group
-            v-model="formUser.sexo"
+            v-model="formUser.gender"
           >
             <v-radio
               label="Feminimo"
@@ -77,7 +77,7 @@ export default {
       rules: {
         required: (value) => !!value || "Campo obrigatório.",
         email: (v) => /.+@.+/.test(v) || "E-mail não é válido",
-        password: (v) => (v && v.length <= 8) || "Min. 8 caracteres",
+        password: (v) => (v && v.length >= 8) || "Min. 8 caracteres",
       },
     }
   },
@@ -85,12 +85,16 @@ export default {
   methods:{
   async createUser() {
     const validadeForm = this.$refs.formCreate.validate()
+    try {
       if (validadeForm){
-        await user().store(this.formUser, {
-          notification: true,
-          message: { success: "Pronto! Bem vindo ao #TeamIkeda" },
-        });
+        await user().create(this.formUser);
+        this.$toast.success("Pronto! Bem vindo ao #TeamIkeda");
+        this.$emit("tabValue")
       }
+    } catch (error) {
+      console.log(error);
+      this.$toast.error("Erro ao importar dados");
+    }
     },
   }
 

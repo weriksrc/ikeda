@@ -2,7 +2,7 @@ export default [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: () => import("@/views/HomeView"),
+    component: () => import("@/views/personal/dashboard/Index"),
     meta: { isAuthenticated: true }
   },
   {

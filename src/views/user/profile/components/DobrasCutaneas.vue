@@ -71,7 +71,8 @@ import user from "@/services/http/user";
 export default {
   data(){
     return{
-      form:{}
+      form:{},
+      dados:[]
     }
   },
 
@@ -85,6 +86,15 @@ export default {
         });
       }
     },
+
+    async getSkinFolds() {
+        this.dados = await user(1).skinFolds().show();
+        console.log("skinFolds", this.dados);
+    },
+  },
+
+  mounted(){
+    this.getSkinFolds()
   }
 }
 </script>

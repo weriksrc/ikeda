@@ -3,7 +3,7 @@
      <v-row>
       <v-col cols="12" class="pt-0 pb-0">
         <v-text-field
-          v-model="formLogin.email"
+          v-model="formLogin.username"
           label="Email"
           placeholder="Email"
           filled
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import auth from "@/services/http/auth";
+import token from "@/services/http/token";
 export default {
 
   data() {
@@ -51,15 +51,16 @@ export default {
   },
   methods: {
     async login() {
-      let { data } = await auth().store(this.formLogin, {
+      let { data }  = await token().accessToken().store(this.formLogin, {
         notification: true,
         message: {
           success: "Lançando treinos...",
           error: "Credenciais inválidas",
         },
       });
-      this.$store.dispatch("auth", data.token);
-      this.$store.dispatch("userData", data.user)
+      console.log("response", data);
+      this.$store.dispatch("auth", data.access_token);
+      // this.$store.dispatch("userData", data?.user)
       this.$router.push("/evolution");
     },
   },

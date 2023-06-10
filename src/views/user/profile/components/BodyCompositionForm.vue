@@ -136,7 +136,8 @@ import user from "@/services/http/user";
 export default {
   data(){
     return{
-      form:{}
+      form:{},
+      dados:[]
     }
   },
 
@@ -144,12 +145,21 @@ export default {
     async createBodyComposition() {
       const validadeForm = this.$refs.formCreateBodyComposition.validate()
       if (validadeForm){
-        await user().bodyComposition().store(this.form, {
+        await user(1).bodyComposition().store(this.form, {
           notification: true,
           message: { success: "Enviado com sucesso" },
         });
       }
     },
+
+    async getBodyComposition() {
+        this.dados = await user(1).bodyComposition().show();
+        console.log("bodyComposition", this.dados);
+    },
+  },
+
+  mounted(){
+    this.getBodyComposition()
   }
 
 }

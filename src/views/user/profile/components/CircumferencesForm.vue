@@ -149,7 +149,8 @@ import user from "@/services/http/user";
 export default {
   data(){
     return{
-      form:{}
+      form:{},
+      dados:[]
     }
   },
 
@@ -163,6 +164,15 @@ export default {
         });
       }
     },
+    async getCircumferences() {
+        this.dados = await user(1).circumferences().show();
+        console.log("circumferences", this.dados);
+
+    },
+  },
+
+  mounted(){
+    this.getCircumferences()
   }
 }
 </script>

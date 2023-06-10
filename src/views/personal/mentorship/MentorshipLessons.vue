@@ -1,21 +1,23 @@
 <template>
   <v-expansion-panels>
     <v-expansion-panel
-      v-for="(mentorshipGroupWeek, index) in mentorshipGroupDataWeek"
-      :key="index"
+      v-for="(mentorshipWeek) in mentorshipDataWeek"
+      :key="mentorshipWeek.id"
     >
       <v-expansion-panel-header>
-        Semana {{ index + 1 }}
+        {{ mentorshipWeek.name }}
       </v-expansion-panel-header>
       <v-expansion-panel-content color="#101010" class="pa-0">
-        <ListVideo :treinos="mentorshipGroupWeek" />
+        <!-- <ListVideo :treinos="mentorshipWeek" /> -->
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
+  
 </template>
 
 <script>
 import video from "@/services/http/video"
+import mentorship from "@/services/http/mentorship"
 import ListVideo from './components/ListVideo.vue'
 
 export default {
@@ -27,50 +29,50 @@ export default {
   data(){
     return{
       mentorshipId: '',
-      mentorshipGroupDataWeek: []
+      // mentorshipGroupDataWeek: [],
+      mentorshipDataWeek: []
     }
   },
 
   methods:{
-    async fetchVideo(){
-      let { data } = await video().show()
-      this.mentorshipGroupWeek(data)
+    async fetchMentorshipWeek(id){
+      let { data } = await mentorship(id).week().show()
+      this.mentorshipDataWeek = data
+      // this.fetchMentorshipWeekVideo(id, data[0].id)
     },
 
-    mentorshipGroupWeek(data){
+    // async fetchVideo(){
+    //   let { data } = await video().show()
+    //   this.mentorshipGroupWeek(data)
+    // },
 
-      const groupedData = {}
+    // mentorshipGroupWeek(data){
 
-      data.forEach(item => {
-      if (!groupedData[item.mentorship_id]) {
-        groupedData[item.mentorship_id] = {};
-      }
+    //   const groupedData = {}
 
-      if (!groupedData[item.mentorship_id][item.n_week]) {
-        groupedData[item.mentorship_id][item.n_week] = [];
-      }
+    //   data.forEach(item => {
+    //   if (!groupedData[item.mentorship_id]) {
+    //     groupedData[item.mentorship_id] = {};
+    //   }
 
-      groupedData[item.mentorship_id][item.n_week].push(item);
-    });
+    //   if (!groupedData[item.mentorship_id][item.n_week]) {
+    //     groupedData[item.mentorship_id][item.n_week] = [];
+    //   }
 
-    Object.values(groupedData[this.mentorshipId]).map(item =>{
-      this.mentorshipGroupDataWeek.push(item)
-    })
+    //   groupedData[item.mentorship_id][item.n_week].push(item);
+    // });
+
+    // Object.values(groupedData[this.mentorshipId]).map(item =>{
+    //   this.mentorshipGroupDataWeek.push(item)
+    // })
     
-    },
-
-    contWeek(data){
-      return Object.keys(data).length;
-    },
-
-    contWeekData(data){
-
-    }
+    // },
   },
 
   created(){
     this.mentorshipId = this.$router.history.current.params.mentorshipId
-    this.fetchVideo()
+    this.fetchMentorshipWeek(this.mentorshipId)
+    // this.fetchVideo()
   }
 }
 </script>
