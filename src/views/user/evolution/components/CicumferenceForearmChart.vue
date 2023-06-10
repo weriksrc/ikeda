@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-card>
     <BaseChart :chartOptions="lineChartOptions"></BaseChart>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -23,15 +23,19 @@ export default {
     return {
       lineChartOptions: {
         chart: {
-          type: "line",
+          type: "spline",
+          backgroundColor: "#232323",
         },
         title: {
           text: "Circunferência dos Antebraços",
+          style: {
+              color: "rgba(255,255,255, 0.3)"
+            }
         },
-        yAxis: {
-          title: {
-            text: "Valres em Centímetros",
-          },
+        legend: {
+          itemStyle: {
+            color: "rgba(255,255,255, 0.3)"
+          }
         },
         lang: {
           noData: "Não há dados"

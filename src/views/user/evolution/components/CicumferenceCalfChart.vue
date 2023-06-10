@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-card>
     <BaseChart :chartOptions="lineChartOptions"></BaseChart>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -21,12 +21,22 @@ export default {
 
   data() {
     return {
+      text: "Circunferência das Panturrilhas",
       lineChartOptions: {
         chart: {
-          type: "line",
+          type: "spline",
+          backgroundColor: "#232323",
         },
         title: {
           text: "Circunferência das Panturrilhas",
+          style: {
+              color: "rgba(255,255,255, 0.3)"
+            }
+        },
+        legend: {
+          itemStyle: {
+            color: "rgba(255,255,255, 0.3)"
+          }
         },
         yAxis: {
           title: {

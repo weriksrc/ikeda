@@ -23,9 +23,18 @@ export default {
       lineChartOptions: {
         chart: {
           type: "spline",
+          backgroundColor: "#232323",
         },
         title: {
           text: "Dobras Cutâneas",
+          style: {
+              color: "rgba(255,255,255, 0.3)"
+            }
+        },
+        legend: {
+          itemStyle: {
+            color: "rgba(255,255,255, 0.3)"
+          }
         },
         yAxis: {
           title: {
