@@ -1,13 +1,12 @@
 <template>
-  <v-container>
-    teste evolution
-    <BodyCompositionPieChart :dataBodyComposition="dataBodyComposition" />
-    <SkinFoldsChart :dataSkinFolds="dataSkinFolds" />
-    <CicumferenceArmChart :dataCircumferences="dataCircumferences" />
-    <CicumferenceForearmChart :dataCircumferences="dataCircumferences" />
-    <CicumferenceThighChart :dataCircumferences="dataCircumferences" />
-    <CicumferenceCalfChart :dataCircumferences="dataCircumferences" />
-    <CircunferenceMiddleChart :dataCircumferences="dataCircumferences" />
+  <v-container class="container-charts">
+    <BodyCompositionPieChart class="mt-4" :dataBodyComposition="dataBodyComposition" />
+    <SkinFoldsChart class="mt-4" :dataSkinFolds="dataSkinFolds" />
+    <CicumferenceArmChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CicumferenceForearmChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CicumferenceThighChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CicumferenceCalfChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircunferenceMiddleChart class="mt-4" :dataCircumferences="dataCircumferences" />
   </v-container>
 </template>
 
@@ -22,7 +21,11 @@ import CircunferenceMiddleChart from "@/views/user/evolution/components/Circunfe
 import user from "@/services/http/user";
 export default {
 
-  // props:['propIdUser'],
+  props:{
+    propIdUser:{
+      type: Number
+    }
+  },
 
   components:{
     BodyCompositionPieChart,
@@ -43,46 +46,62 @@ export default {
     }
   },
 
+  // watch:{
+  //   propIdUser(value){
+  //     console.log("value", value);
+  //     this.idUser = value;
+  //     this.init()
+  //   }
+  // },
+
   methods:{
+    async init(){
+      
+
+      await this.getBodyComposition();
+      await this.getSkinFolds();
+      await this.getCircumferences()
+    },
+
     async getUserMe() {
-      let {data} = await user().me().show();
-      this.idUser = data.id
-      console.log("bodyComposition", this.dataBodyComposition);
+      if (this.propIdUser) {
+        this.idUser = this.propIdUser
+      }else{
+        let {data} = await user().me().show();
+        this.idUser = data.id
+      }
     },
 
     async getBodyComposition() {
-      let {data} = await user(1).bodyComposition().show();
+      let {data} = await user(this.idUser).bodyComposition().show();
       this.dataBodyComposition = data
-      console.log("bodyComposition", this.dataBodyComposition);
+      // console.log("bodyComposition", this.dataBodyComposition);
     },
 
     async getSkinFolds() {
-      let {data} = await user(1).skinFolds().show();
+      let {data} = await user(this.idUser).skinFolds().show();
       this.dataSkinFolds = data
-      console.log("skinFolds", this.dataSkinFolds);
+      // console.log("skinFolds", this.dataSkinFolds);
     },
 
     async getCircumferences() {
-      let {data} = await user(1).circumferences().show();
+      let {data} = await user(this.idUser).circumferences().show();
       this.dataCircumferences = data
-      console.log("circumferences", this.dataCircumferences);
+      // console.log("circumferences", this.dataCircumferences);
 
     },
   },
 
-  mounted(){
-    this.getUserMe();
-    // if(propIdUser){
-    //   this.idUser = this.propIdUser
-    // };
-    this.getBodyComposition(this.idUser);
-    this.getSkinFolds(this.idUser);
-    this.getCircumferences(this.idUser)
+  async mounted(){
+    await this.getUserMe();
+    this.init();
   }
   
 }
 </script>
 
 <style>
-
+.container-charts{
+  background-color: #303030;
+}
 </style>
