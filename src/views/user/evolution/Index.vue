@@ -5,24 +5,24 @@
     <IMCCard class="mt-4" :title="'IMC'" :subtitle="imc" />
     <BodyCompositionPieChart class="mt-4" :dataBodyComposition="dataBodyComposition" />
     <SkinFoldsChart class="mt-4" :dataSkinFolds="dataSkinFolds" />
-    <CicumferenceArmChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CicumferenceForearmChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CicumferenceThighChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CicumferenceCalfChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircumferenceArmChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircumferenceForearmChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircumferenceThighChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircumferenceCalfChart class="mt-4" :dataCircumferences="dataCircumferences" />
     <CircunferenceMiddleChart class="mt-4" :dataCircumferences="dataCircumferences" />
   </v-container>
 </template>
 
 <script>
-import HeightCard from "@/views/user/evolution/components/InformationCard.vue";
-import WeightCard from "@/views/user/evolution/components/InformationCard.vue";
-import IMCCard from "@/views/user/evolution/components/InformationCard.vue";
+import HeightCard from "@/components/BaseInformationCard.vue";
+import WeightCard from "@/components/BaseInformationCard.vue";
+import IMCCard from "@/components/BaseInformationCard.vue";
 import BodyCompositionPieChart from "@/views/user/evolution/components/BodyCompositionPieChart.vue";
 import SkinFoldsChart from "@/views/user/evolution/components/SkinFoldsChart.vue";
-import CicumferenceArmChart from "@/views/user/evolution/components/CicumferenceArmChart.vue";
-import CicumferenceForearmChart from "@/views/user/evolution/components/CicumferenceForearmChart.vue";
-import CicumferenceThighChart from "@/views/user/evolution/components/CicumferenceThighChart.vue";
-import CicumferenceCalfChart from "@/views/user/evolution/components/CicumferenceCalfChart.vue";
+import CircumferenceArmChart from "@/views/user/evolution/components/CircumferenceArmChart.vue";
+import CircumferenceForearmChart from "@/views/user/evolution/components/CircumferenceForearmChart.vue";
+import CircumferenceThighChart from "@/views/user/evolution/components/CircumferenceThighChart.vue";
+import CircumferenceCalfChart from "@/views/user/evolution/components/CircumferenceCalfChart.vue";
 import CircunferenceMiddleChart from "@/views/user/evolution/components/CircunferenceMiddleChart.vue";
 import user from "@/services/http/user";
 export default {
@@ -39,10 +39,10 @@ export default {
     IMCCard,
     BodyCompositionPieChart,
     SkinFoldsChart,
-    CicumferenceArmChart,
-    CicumferenceForearmChart,
-    CicumferenceThighChart,
-    CicumferenceCalfChart,
+    CircumferenceArmChart,
+    CircumferenceForearmChart,
+    CircumferenceThighChart,
+    CircumferenceCalfChart,
     CircunferenceMiddleChart,
   },
 
