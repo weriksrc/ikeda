@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card color="#232323">
     <BaseChart :chartOptions="lineChartOptions"></BaseChart>
   </v-card>
 </template>
