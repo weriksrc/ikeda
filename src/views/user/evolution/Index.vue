@@ -1,5 +1,8 @@
 <template>
   <v-container class="container-charts">
+    <HeightCard class="mt-4" :title="'Altura'" :subtitle="height" />
+    <WeightCard class="mt-4" :title="'Peso'" :subtitle="weight" />
+    <IMCCard class="mt-4" :title="'IMC'" :subtitle="imc" />
     <BodyCompositionPieChart class="mt-4" :dataBodyComposition="dataBodyComposition" />
     <SkinFoldsChart class="mt-4" :dataSkinFolds="dataSkinFolds" />
     <CicumferenceArmChart class="mt-4" :dataCircumferences="dataCircumferences" />
@@ -11,6 +14,9 @@
 </template>
 
 <script>
+import HeightCard from "@/views/user/evolution/components/InformationCard.vue";
+import WeightCard from "@/views/user/evolution/components/InformationCard.vue";
+import IMCCard from "@/views/user/evolution/components/InformationCard.vue";
 import BodyCompositionPieChart from "@/views/user/evolution/components/BodyCompositionPieChart.vue";
 import SkinFoldsChart from "@/views/user/evolution/components/SkinFoldsChart.vue";
 import CicumferenceArmChart from "@/views/user/evolution/components/CicumferenceArmChart.vue";
@@ -28,6 +34,9 @@ export default {
   },
 
   components:{
+    HeightCard,
+    WeightCard,
+    IMCCard,
     BodyCompositionPieChart,
     SkinFoldsChart,
     CicumferenceArmChart,
@@ -42,6 +51,9 @@ export default {
       dataBodyComposition:[],
       dataSkinFolds:[],
       dataCircumferences:[],
+      height:'',
+      weight:'',
+      imc:'',
       idUser: '',
     }
   },
@@ -56,8 +68,6 @@ export default {
 
   methods:{
     async init(){
-      
-
       await this.getBodyComposition();
       await this.getSkinFolds();
       await this.getCircumferences()
@@ -75,6 +85,7 @@ export default {
     async getBodyComposition() {
       let {data} = await user(this.idUser).bodyComposition().show();
       this.dataBodyComposition = data
+      this.infomation(this.dataBodyComposition)
       // console.log("bodyComposition", this.dataBodyComposition);
     },
 
@@ -90,6 +101,12 @@ export default {
       // console.log("circumferences", this.dataCircumferences);
 
     },
+
+    infomation(data){
+      this.height = data[2].height;
+      this.weight = data[2].weight
+      this.imc = (this.weight/(this.height^2)).toFixed(1)
+    }
   },
 
   async mounted(){
