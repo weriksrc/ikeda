@@ -8,7 +8,8 @@
         {{ mentorshipWeek.name }}
       </v-expansion-panel-header>
       <v-expansion-panel-content color="#101010" class="pa-0">
-        <!-- <ListVideo :treinos="mentorshipWeek" /> -->
+        <!-- <ListVideo :treinos="mentorshipWeek" :mentorshipId="mentorshipId" :mentorshipWeekId="mentorshipWeek.id" /> -->
+        <ListVideo :mentorshipId="mentorshipId" :mentorshipWeekId="mentorshipWeek.id" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -38,6 +39,7 @@ export default {
     async fetchMentorshipWeek(id){
       let { data } = await mentorship(id).week().show()
       this.mentorshipDataWeek = data
+      console.log("mentorshipDataWeek", this.mentorshipDataWeek);
       // this.fetchMentorshipWeekVideo(id, data[0].id)
     },
 
