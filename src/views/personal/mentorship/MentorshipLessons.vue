@@ -1,98 +1,67 @@
 <template>
   <v-expansion-panels>
     <v-expansion-panel
-      v-for="(mentorshipWeek) in mentorshipDataWeek"
+      v-for="mentorshipWeek in mentorshipDataWeek"
       :key="mentorshipWeek.id"
     >
       <v-expansion-panel-header>
         {{ mentorshipWeek.name }}
       </v-expansion-panel-header>
       <v-expansion-panel-content color="#101010" class="pa-0">
-        <!-- <ListVideo :treinos="mentorshipWeek" :mentorshipId="mentorshipId" :mentorshipWeekId="mentorshipWeek.id" /> -->
-        <ListVideo :mentorshipId="mentorshipId" :mentorshipWeekId="mentorshipWeek.id" />
+        <ListVideo :id="mentorshipId" :idWeek="mentorshipWeek.id" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
-  
 </template>
 
 <script>
-import video from "@/services/http/video"
-import mentorship from "@/services/http/mentorship"
-import ListVideo from './components/ListVideo.vue'
+import mentorship from "@/services/http/mentorship";
+import ListVideo from "./components/ListVideo.vue";
 
 export default {
-
-  components:{
-    ListVideo
+  components: {
+    ListVideo,
   },
 
-  data(){
-    return{
-      mentorshipId: '',
+  data() {
+    return {
+      mentorshipId: "",
       // mentorshipGroupDataWeek: [],
-      mentorshipDataWeek: []
-    }
+      mentorshipDataWeek: [],
+    };
   },
 
-  methods:{
-    async fetchMentorshipWeek(id){
-      let { data } = await mentorship(id).week().show()
-      this.mentorshipDataWeek = data
-      console.log("mentorshipDataWeek", this.mentorshipDataWeek);
-      // this.fetchMentorshipWeekVideo(id, data[0].id)
+  methods: {
+    async fetchMentorshipWeek(id) {
+      let { data } = await mentorship(id).week().show();
+      this.mentorshipDataWeek = data.reverse();
     },
-
-    // async fetchVideo(){
-    //   let { data } = await video().show()
-    //   this.mentorshipGroupWeek(data)
-    // },
-
-    // mentorshipGroupWeek(data){
-
-    //   const groupedData = {}
-
-    //   data.forEach(item => {
-    //   if (!groupedData[item.mentorship_id]) {
-    //     groupedData[item.mentorship_id] = {};
-    //   }
-
-    //   if (!groupedData[item.mentorship_id][item.n_week]) {
-    //     groupedData[item.mentorship_id][item.n_week] = [];
-    //   }
-
-    //   groupedData[item.mentorship_id][item.n_week].push(item);
-    // });
-
-    // Object.values(groupedData[this.mentorshipId]).map(item =>{
-    //   this.mentorshipGroupDataWeek.push(item)
-    // })
-    
-    // },
   },
 
-  created(){
-    this.mentorshipId = this.$router.history.current.params.mentorshipId
-    this.fetchMentorshipWeek(this.mentorshipId)
-    // this.fetchVideo()
-  }
-}
+  mounted() {
+    this.mentorshipId = this.$router.history.current.params.mentorshipId;
+    this.fetchMentorshipWeek(this.mentorshipId);
+  },
+};
 </script>
 
 <style>
-.v-expansion-panel-header{
-  color: #FFD103 !important;
+.v-expansion-panel-header {
+  color: #ffd103 !important;
   font-size: 1rem;
   background-color: #232323 !important;
 }
-.v-expansion-panel > .v-expansion-panel-header > .v-expansion-panel-header__icon > .v-icon{
-  color: #FFD103 !important;
+.v-expansion-panel
+  > .v-expansion-panel-header
+  > .v-expansion-panel-header__icon
+  > .v-icon {
+  color: #ffd103 !important;
 }
-.v-expansion-panel-content__wrap{
+.v-expansion-panel-content__wrap {
   padding: 0px;
 }
-.v-expansion-panel--active:not(:first-child), .v-expansion-panel--active + .v-expansion-panel {
-    margin-top: 0px;
+.v-expansion-panel--active:not(:first-child),
+.v-expansion-panel--active + .v-expansion-panel {
+  margin-top: 0px;
 }
-
 </style>

@@ -14,9 +14,10 @@ export default class Http {
       baseURL: this.baseURL,
       timeout: 120000,
       // headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      headers: { 
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Accept": "application/json"
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:8080",
       },
     });
 

@@ -8,11 +8,10 @@
 import BaseChart from "@/components/BaseChart.vue";
 
 export default {
-
-  props:{
-    dataSkinFolds:{
-      type: Array
-    }
+  props: {
+    dataSkinFolds: {
+      type: Array,
+    },
   },
 
   components: {
@@ -28,13 +27,13 @@ export default {
         title: {
           text: "Dobras Cutâneas",
           style: {
-              color: "rgba(255,255,255, 0.3)"
-            }
+            color: "rgba(255,255,255, 0.3)",
+          },
         },
         legend: {
           itemStyle: {
-            color: "rgba(255,255,255, 0.3)"
-          }
+            color: "rgba(255,255,255, 0.3)",
+          },
         },
         yAxis: {
           title: {
@@ -42,26 +41,26 @@ export default {
           },
         },
         lang: {
-          noData: "Não há dados"
+          noData: "Não há dados",
         },
         series: [],
       },
     };
   },
 
-  watch:{
-    dataSkinFolds(value){
-      this.getValuesChart(value)
-    }
+  watch: {
+    dataSkinFolds(value) {
+      this.getValuesChart(value);
+    },
   },
 
-  methods:{
-    getValuesChart(data){
+  methods: {
+    getValuesChart(data) {
       const keys = ["triceps", "subscapular", "suprailiac", "abdomen"];
       const groupedData = {};
 
-      data.forEach(entry => {
-        keys.forEach(key => {
+      data.forEach((entry) => {
+        keys.forEach((key) => {
           if (entry.hasOwnProperty(key)) {
             if (!groupedData[key]) {
               groupedData[key] = [];
@@ -71,11 +70,11 @@ export default {
         });
       });
 
-      this.lineChartOptions.series = Object.keys(groupedData).map(key => ({
+      this.lineChartOptions.series = Object.keys(groupedData).map((key) => ({
         name: key,
         data: groupedData[key],
       }));
-    }
-  }
+    },
+  },
 };
 </script>

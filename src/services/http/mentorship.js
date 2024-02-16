@@ -4,21 +4,22 @@ class MentorshipHttp extends BaseServiceHttp {
   constructor(id) {
     const resource = "/mentorship";
     const relationship = {
-      week: "week"
+      week: "week",
     };
     const baseURL = process.env.VUE_APP_ROOT_API;
     super(id, resource, relationship, baseURL);
   }
 
-    video(data) {
+  video(data) {
     return this._http.get(
-      `https://ikedapersonal.com.br/api/v2/mentorship/${data.id}/week/${data.id_week}/video`,
+      `${process.env.VUE_APP_ROOT_API}/mentorship/${data.id}/week/${data.idWeek}/video`,
+      // `https://ikedapersonal.com.br/api/v2/mentorship/${data.id}/week/${data.id_week}/video`,
       {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       }
-    )
+    );
   }
 }
 
