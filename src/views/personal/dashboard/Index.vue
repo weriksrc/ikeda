@@ -1,19 +1,23 @@
 <template>
-  <div>
-    teste
-    <SkinFoldsChart />
-  </div>
+  <v-container class="container-charts">
+    <Students class="mt-4" :title="'Alunos'" :subtitle="42" />
+    <GenderPieChart class="mt-4" />
+  </v-container>
 </template>
 
 <script>
-import SkinFoldsChart from "@/views/user/evolution/components/SkinFoldsChart.vue";
+import Students from "@/components/BaseInformationCard.vue";
+import GenderPieChart from "./components/GenderPieChart.vue";
 export default {
-  components:{
-    SkinFoldsChart
-  }
-}
+  components: {
+    Students,
+    GenderPieChart,
+  },
+};
 </script>
 
 <style>
-
+.container-charts {
+  background-color: #303030;
+}
 </style>
