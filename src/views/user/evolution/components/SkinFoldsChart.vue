@@ -37,7 +37,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: "Valres em Milímetros",
+            text: "Valores em Milímetros",
           },
         },
         lang: {
