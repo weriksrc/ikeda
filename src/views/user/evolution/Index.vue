@@ -1,15 +1,34 @@
 <template>
   <v-container class="container-charts">
+    <slot name="top"></slot>
     <HeightCard class="mt-4" :title="'Altura'" :subtitle="height" />
     <WeightCard class="mt-4" :title="'Peso'" :subtitle="weight" />
     <IMCCard class="mt-4" :title="'IMC'" :subtitle="imc" />
-    <BodyCompositionPieChart class="mt-4" :dataBodyComposition="dataBodyComposition" />
+    <BodyCompositionPieChart
+      class="mt-4"
+      :dataBodyComposition="dataBodyComposition"
+    />
     <SkinFoldsChart class="mt-4" :dataSkinFolds="dataSkinFolds" />
-    <CircumferenceArmChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CircumferenceForearmChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CircumferenceThighChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CircumferenceCalfChart class="mt-4" :dataCircumferences="dataCircumferences" />
-    <CircunferenceMiddleChart class="mt-4" :dataCircumferences="dataCircumferences" />
+    <CircumferenceArmChart
+      class="mt-4"
+      :dataCircumferences="dataCircumferences"
+    />
+    <CircumferenceForearmChart
+      class="mt-4"
+      :dataCircumferences="dataCircumferences"
+    />
+    <CircumferenceThighChart
+      class="mt-4"
+      :dataCircumferences="dataCircumferences"
+    />
+    <CircumferenceCalfChart
+      class="mt-4"
+      :dataCircumferences="dataCircumferences"
+    />
+    <CircunferenceMiddleChart
+      class="mt-4"
+      :dataCircumferences="dataCircumferences"
+    />
   </v-container>
 </template>
 
@@ -26,14 +45,13 @@ import CircumferenceCalfChart from "@/views/user/evolution/components/Circumfere
 import CircunferenceMiddleChart from "@/views/user/evolution/components/CircunferenceMiddleChart.vue";
 import user from "@/services/http/user";
 export default {
-
-  props:{
-    propIdUser:{
-      type: Number
-    }
+  props: {
+    propIdUser: {
+      type: Number,
+    },
   },
 
-  components:{
+  components: {
     HeightCard,
     WeightCard,
     IMCCard,
@@ -46,16 +64,16 @@ export default {
     CircunferenceMiddleChart,
   },
 
-  data(){
-    return{
-      dataBodyComposition:[],
-      dataSkinFolds:[],
-      dataCircumferences:[],
-      height:'',
-      weight:'',
-      imc:'',
-      idUser: '',
-    }
+  data() {
+    return {
+      dataBodyComposition: [],
+      dataSkinFolds: [],
+      dataCircumferences: [],
+      height: "",
+      weight: "",
+      imc: "",
+      idUser: "",
+    };
   },
 
   // watch:{
@@ -66,59 +84,57 @@ export default {
   //   }
   // },
 
-  methods:{
-    async init(){
+  methods: {
+    async init() {
       await this.getBodyComposition();
       await this.getSkinFolds();
-      await this.getCircumferences()
+      await this.getCircumferences();
     },
 
     async getUserMe() {
       if (this.propIdUser) {
-        this.idUser = this.propIdUser
-      }else{
-        let {data} = await user().me().show();
-        this.idUser = data.id
+        this.idUser = this.propIdUser;
+      } else {
+        let { data } = await user().me().show();
+        this.idUser = data.id;
       }
     },
 
     async getBodyComposition() {
-      let {data} = await user(this.idUser).bodyComposition().show();
-      this.dataBodyComposition = data
-      this.infomation(this.dataBodyComposition)
+      let { data } = await user(this.idUser).bodyComposition().show();
+      this.dataBodyComposition = data;
+      this.infomation(this.dataBodyComposition);
       // console.log("bodyComposition", this.dataBodyComposition);
     },
 
     async getSkinFolds() {
-      let {data} = await user(this.idUser).skinFolds().show();
-      this.dataSkinFolds = data
+      let { data } = await user(this.idUser).skinFolds().show();
+      this.dataSkinFolds = data;
       // console.log("skinFolds", this.dataSkinFolds);
     },
 
     async getCircumferences() {
-      let {data} = await user(this.idUser).circumferences().show();
-      this.dataCircumferences = data
+      let { data } = await user(this.idUser).circumferences().show();
+      this.dataCircumferences = data;
       // console.log("circumferences", this.dataCircumferences);
-
     },
 
-    infomation(data){
+    infomation(data) {
       this.height = data[2].height;
-      this.weight = data[2].weight
-      this.imc = (this.weight/(this.height^2)).toFixed(1)
-    }
+      this.weight = data[2].weight;
+      this.imc = (this.weight / (this.height ^ 2)).toFixed(1);
+    },
   },
 
-  async mounted(){
+  async mounted() {
     await this.getUserMe();
     this.init();
-  }
-  
-}
+  },
+};
 </script>
 
 <style>
-.container-charts{
+.container-charts {
   background-color: #303030;
 }
 </style>
