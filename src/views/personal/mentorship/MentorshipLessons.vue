@@ -1,5 +1,6 @@
 <template>
   <v-expansion-panels>
+    <LoaderSystem :active="loading" />
     <v-expansion-panel
       v-for="mentorshipWeek in mentorshipDataWeek"
       :key="mentorshipWeek.id"
@@ -17,24 +18,28 @@
 <script>
 import mentorship from "@/services/http/mentorship";
 import ListVideo from "./components/ListVideo.vue";
+import LoaderSystem from "@/components/LoaderSystem.vue";
 
 export default {
   components: {
     ListVideo,
+    LoaderSystem,
   },
 
   data() {
     return {
       mentorshipId: "",
-      // mentorshipGroupDataWeek: [],
       mentorshipDataWeek: [],
+      loading: false,
     };
   },
 
   methods: {
     async fetchMentorshipWeek(id) {
+      this.loading = true;
       let { data } = await mentorship(id).week().show();
       this.mentorshipDataWeek = data.reverse();
+      this.loading = false;
     },
   },
 
