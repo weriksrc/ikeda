@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="70.6475mm" height="104.072mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 3573.96 5264.86" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+    .preenchimento1 {fill:#FFFFFF;}
+    .preenchimento2 {fill:#FFD103;}
+    .preenchimento3 {fill:#FFD103;}
+    .contorno {stroke:#FFFFFF;}
+    .animateFill1 {
+      animation: fillAnimation1 2s forwards;
+      animation-iteration-count: infinite;
+    }
+    .animateFill2 {
+      animation: fillAnimation2 2s forwards;
+      animation-iteration-count: infinite;
+    }
+    .animateFill3 {
+      animation: fillAnimation3 2s forwards;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fillAnimation1 {
+      0%, 100% { fill-opacity: 0; }
+      50% { fill-opacity: 1; }
+    }
+    @keyframes fillAnimation2 {
+      0%, 100% { fill-opacity: 0; }
+      50% { fill-opacity: 1; }
+    }
+    @keyframes fillAnimation3 {
+      0%, 100% { fill-opacity: 0; }
+      50% { fill-opacity: 1; }
+    }
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+   <polygon class="preenchimento1 animateFill1" stroke="white" stroke-width="20" points="1147.84,922.5 10.12,10.11 10.12,5140.99 1147.84,5140.99 "/>
+  </g>
+  <g>
+   <polygon class="preenchimento2 animateFill2" stroke="white" stroke-width="20" points="2327.95,2327.9 3447.82,467.4 2310.1,935.87 1190.23,2791.91 "/>
+  </g>
+  <g>
+   <polygon class="preenchimento3 animateFill3" stroke="white" stroke-width="20" points="3367.54,4085.8 1767.88,2612.1 1997.82,3827.02 3563.85,5254.75 "/>
+  </g>
+ </g>
+</svg>
