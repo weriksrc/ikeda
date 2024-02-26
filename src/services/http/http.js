@@ -13,7 +13,6 @@ export default class Http {
     const http = axios.create({
       baseURL: this.baseURL,
       timeout: 120000,
-      // headers: { "Content-Type": "application/x-www-form-urlencoded" },
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Accept: "application/json",
@@ -23,8 +22,6 @@ export default class Http {
 
     http.interceptors.request.use(
       (config) => {
-        // config.params = paramInterceptors(config);
-
         const token = store.getters.getToken;
         if (token) config.headers.Authorization = `Bearer ${token}`;
         return config;
