@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 // (Router Guard)
@@ -17,4 +17,3 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
-
