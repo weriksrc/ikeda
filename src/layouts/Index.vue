@@ -19,6 +19,8 @@ import BottomNavigation from "./system/BottomNavigation.vue";
 import BottomNavigationPersonal from "./system/BottomNavigationPersonal.vue";
 import chageImage from "../mixin/chageImage";
 import user from "@/services/http/user";
+import { mapGetters } from "vuex";
+
 export default {
   name: "Portal",
   components: {
@@ -31,8 +33,13 @@ export default {
   data() {
     return {
       currentRoute: "",
-      currentUser: "",
     };
+  },
+
+  computed: {
+    ...mapGetters({
+      currentUser: "getUser",
+    }),
   },
 
   methods: {
@@ -47,8 +54,10 @@ export default {
     },
 
     async fetchCurrentUser() {
-      let { data } = await user().me().show();
-      this.currentUser = data;
+      if (this.currentUser == "") {
+        let { data } = await user().me().show();
+        this.$store.dispatch("userData", data);
+      }
     },
   },
 
