@@ -18,12 +18,16 @@
           v-model="formLogin.password"
           label="Senha"
           placeholder="Senha"
-          type="password"
+          :type="viewPassword ? 'text' : 'password'"
           filled
           rounded
           dense
           color="#777777"
           background-color="#232323"
+          :append-icon="
+            viewPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'
+          "
+          @click:append="toggleTypeInput()"
         ></v-text-field>
       </v-col>
       <v-col cols="12">
@@ -48,6 +52,7 @@ export default {
     return {
       formLogin: {},
       currentUser: "",
+      viewPassword: false,
     };
   },
   methods: {
@@ -61,21 +66,20 @@ export default {
             error: "Credenciais inválidas",
           },
         });
-      console.log("response", data);
       this.$store.dispatch("auth", data.access_token);
-      // this.$store.dispatch("userData", data?.user)
-      await this.fetchCurrentUser();
-      console.log("this.currentUser.is_admin", this.currentUser.is_admin);
-      if (this.currentUser.is_admin) {
-        this.$router.push("/dashboard");
-      } else {
-        this.$router.push("/evolution");
-      }
+      this.fetchCurrentUser();
     },
 
     async fetchCurrentUser() {
       let { data } = await user().me().show();
-      this.currentUser = data;
+      this.$store.dispatch("userData", data);
+      data.is_admin
+        ? this.$router.push("/dashboard")
+        : this.$router.push("/evolution");
+    },
+
+    toggleTypeInput() {
+      this.viewPassword = !this.viewPassword;
     },
   },
 };
