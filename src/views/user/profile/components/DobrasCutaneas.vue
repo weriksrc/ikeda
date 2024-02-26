@@ -9,6 +9,7 @@
           placeholder="Tríceps (mm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -22,6 +23,7 @@
           placeholder="Subescapular (mm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -35,6 +37,7 @@
           placeholder="Suprailiaca (mm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -48,17 +51,14 @@
           placeholder="Abdômen (mm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="d-flex justify-end">
-        <v-btn
-          depressed
-          color="#ffd103"
-          @click="createSkinFolds()"
-        >
+        <v-btn depressed color="#ffd103" @click="createSkinFolds()">
           Salvar
         </v-btn>
       </v-col>
@@ -69,36 +69,36 @@
 <script>
 import user from "@/services/http/user";
 export default {
-  data(){
-    return{
-      form:{},
-      dados:[]
-    }
+  data() {
+    return {
+      form: {},
+      dados: [],
+    };
   },
 
-  methods:{
+  methods: {
     async createSkinFolds() {
-      const validadeForm = this.$refs.formCreateSkinFolds.validate()
-      if (validadeForm){
-        await user().skinFolds().store(this.form, {
-          notification: true,
-          message: { success: "Enviado com sucesso" },
-        });
+      const validadeForm = this.$refs.formCreateSkinFolds.validate();
+      if (validadeForm) {
+        await user()
+          .skinFolds()
+          .store(this.form, {
+            notification: true,
+            message: { success: "Enviado com sucesso" },
+          });
       }
     },
 
     async getSkinFolds() {
-        this.dados = await user(1).skinFolds().show();
-        console.log("skinFolds", this.dados);
+      this.dados = await user(1).skinFolds().show();
+      console.log("skinFolds", this.dados);
     },
   },
 
-  mounted(){
-    this.getSkinFolds()
-  }
-}
+  mounted() {
+    this.getSkinFolds();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -9,6 +9,7 @@
           placeholder="Braço Direito (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -22,6 +23,7 @@
           placeholder="Braço Esquerdo (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -35,6 +37,7 @@
           placeholder="Antebraço Direito (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -48,6 +51,7 @@
           placeholder="Antebraço Esquerdo (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -61,6 +65,7 @@
           placeholder="Quadril (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -74,6 +79,7 @@
           placeholder="Cintura (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -87,6 +93,7 @@
           placeholder="Coxa Direita (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -100,6 +107,7 @@
           placeholder="Coxa Esquerda (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -113,6 +121,7 @@
           placeholder="Panturrilha Direita (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -126,17 +135,14 @@
           placeholder="Panturrilha Esquerda (cm)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="d-flex justify-end">
-        <v-btn
-          depressed
-          color="#ffd103"
-          @click="createCircumferences()"
-        >
+        <v-btn depressed color="#ffd103" @click="createCircumferences()">
           Salvar
         </v-btn>
       </v-col>
@@ -147,36 +153,35 @@
 <script>
 import user from "@/services/http/user";
 export default {
-  data(){
-    return{
-      form:{},
-      dados:[]
-    }
+  data() {
+    return {
+      form: {},
+      dados: [],
+    };
   },
 
-  methods:{
+  methods: {
     async createCircumferences() {
-      const validadeForm = this.$refs.formCreateCircumference.validate()
-      if (validadeForm){
-        await user().circumferences().store(this.form, {
-          notification: true,
-          message: { success: "Enviado com sucesso" },
-        });
+      const validadeForm = this.$refs.formCreateCircumference.validate();
+      if (validadeForm) {
+        await user()
+          .circumferences()
+          .store(this.form, {
+            notification: true,
+            message: { success: "Enviado com sucesso" },
+          });
       }
     },
     async getCircumferences() {
-        this.dados = await user(1).circumferences().show();
-        console.log("circumferences", this.dados);
-
+      this.dados = await user(1).circumferences().show();
+      console.log("circumferences", this.dados);
     },
   },
 
-  mounted(){
-    this.getCircumferences()
-  }
-}
+  mounted() {
+    this.getCircumferences();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

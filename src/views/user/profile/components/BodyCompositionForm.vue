@@ -9,6 +9,7 @@
           placeholder="Idade"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -22,6 +23,7 @@
           placeholder="Peso (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -35,6 +37,7 @@
           placeholder="Altura (M)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -48,6 +51,7 @@
           placeholder="Percent. Gordura (%)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -61,6 +65,7 @@
           placeholder="Massa Magra (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -74,6 +79,7 @@
           placeholder="Massa Gorda (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -87,6 +93,7 @@
           placeholder="Massa Muscular (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -100,6 +107,7 @@
           placeholder="Massa Óssea (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
@@ -113,17 +121,14 @@
           placeholder="Massa Residual (Kg)"
           filled
           rounded
+          class="rounded-lg"
           dense
           color="#777777"
           background-color="#EEEEEE"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="d-flex justify-end">
-        <v-btn
-          depressed
-          color="#ffd103"
-          @click="createBodyComposition()"
-        >
+        <v-btn depressed color="#ffd103" @click="createBodyComposition()">
           Salvar
         </v-btn>
       </v-col>
@@ -134,37 +139,36 @@
 <script>
 import user from "@/services/http/user";
 export default {
-  data(){
-    return{
-      form:{},
-      dados:[]
-    }
+  data() {
+    return {
+      form: {},
+      dados: [],
+    };
   },
 
-  methods:{
+  methods: {
     async createBodyComposition() {
-      const validadeForm = this.$refs.formCreateBodyComposition.validate()
-      if (validadeForm){
-        await user(1).bodyComposition().store(this.form, {
-          notification: true,
-          message: { success: "Enviado com sucesso" },
-        });
+      const validadeForm = this.$refs.formCreateBodyComposition.validate();
+      if (validadeForm) {
+        await user(1)
+          .bodyComposition()
+          .store(this.form, {
+            notification: true,
+            message: { success: "Enviado com sucesso" },
+          });
       }
     },
 
     async getBodyComposition() {
-        this.dados = await user(1).bodyComposition().show();
-        console.log("bodyComposition", this.dados);
+      this.dados = await user(1).bodyComposition().show();
+      console.log("bodyComposition", this.dados);
     },
   },
 
-  mounted(){
-    this.getBodyComposition()
-  }
-
-}
+  mounted() {
+    this.getBodyComposition();
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

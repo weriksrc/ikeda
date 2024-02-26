@@ -7,6 +7,7 @@
         type="password"
         filled
         rounded
+        class="rounded-lg"
         dense
         color="#777777"
         background-color="#EEEEEE"
@@ -19,6 +20,7 @@
         type="password"
         filled
         rounded
+        class="rounded-lg"
         dense
         color="#777777"
         background-color="#EEEEEE"
@@ -28,11 +30,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>
