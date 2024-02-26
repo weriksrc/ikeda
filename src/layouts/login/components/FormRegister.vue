@@ -33,12 +33,16 @@
           label="Senha"
           placeholder="Senha"
           :rules="[rules.required, rules.password]"
-          type="password"
+          :type="viewPassword ? 'text' : 'password'"
           filled
           rounded
           dense
           color="#777777"
           background-color="#232323"
+          :append-icon="
+            viewPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'
+          "
+          @click:append="toggleTypeInput()"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="pt-0 pb-0">
@@ -73,6 +77,7 @@ export default {
         email: (v) => /.+@.+/.test(v) || "E-mail não é válido",
         password: (v) => (v && v.length >= 8) || "Min. 8 caracteres",
       },
+      viewPassword: false,
     };
   },
 
@@ -89,6 +94,10 @@ export default {
         console.log(error);
         this.$toast.error("Erro ao importar dados");
       }
+    },
+
+    toggleTypeInput() {
+      this.viewPassword = !this.viewPassword;
     },
   },
 };
