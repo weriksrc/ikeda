@@ -8,7 +8,7 @@
     ></v-text-field>
     <v-row class="px-4 pb-4 pt-0">
       <v-col cols="4" v-for="user in userData" :key="user.id">
-        <UserCard :id="user.id" :status="user.is_active" :name="user.name"/>
+        <UserCard :user="user" />
       </v-col>
     </v-row>
   </v-container>
@@ -18,31 +18,27 @@
 import user from "@/services/http/user";
 import UserCard from "./components/UserCard.vue";
 export default {
-
-  components:{
-    UserCard
+  components: {
+    UserCard,
   },
 
-  data(){
-    return{
-      userData: []
-    }
+  data() {
+    return {
+      userData: [],
+    };
   },
 
-  methods:{
-    async fetchUsers(){
+  methods: {
+    async fetchUsers() {
       let { data } = await user().show();
-      this.userData = data
-      console.log("this.userData", this.userData);
-    }
+      this.userData = data;
+    },
   },
 
-  mounted(){
-    this.fetchUsers()
-  }
-}
+  mounted() {
+    this.fetchUsers();
+  },
+};
 </script>
 
-<style>
-</style>
-
+<style></style>
