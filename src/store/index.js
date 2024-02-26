@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: window.localStorage.getItem("token") || "",
-    user: ""
+    user: "",
   },
 
   actions: {
@@ -19,7 +19,7 @@ export default new Vuex.Store({
     },
     userData({ commit }, user) {
       commit("setUser", user);
-    }
+    },
   },
 
   mutations: {
@@ -29,17 +29,17 @@ export default new Vuex.Store({
     },
     setUser: (state, payload) => {
       state.user = payload;
-    }
+    },
   },
   getters: {
-    isLogged: state => {
+    isLogged: (state) => {
       if (state.token != "") return true;
       return false;
     },
-    getToken: state => state.token,
-    getUser: state => {
+    getToken: (state) => state.token,
+    getUser: (state) => {
       if (state.user != "") return state.user;
       return "";
-    }
-  }
+    },
+  },
 });
