@@ -6,25 +6,25 @@
           <v-avatar color="#777777" size="60" class="mt-2">
             <v-icon dark> mdi-account-circle </v-icon>
           </v-avatar>
-          <p class="ma-0 mt-2 subtitle-2">{{ formatName(name) }}</p>
-          <p :class="classAtivo(status)">{{ status ? "Ativo" : "Inativo" }}</p>
+          <p class="ma-0 mt-2 subtitle-2">{{ formatName(user.name) }}</p>
+          <p :class="classAtivo(user.is_active)">
+            {{ user.is_active ? "Ativo" : "Inativo" }}
+          </p>
         </div>
       </v-img>
     </v-card>
-    <ModalUser
-      :dialog="dialog"
-      :idUser="id"
-      :name="name"
-      :status="status"
-      @close="dialog = false"
-    />
+    <ModalUser :dialog="dialog" :user="user" @close="dialog = false" />
   </div>
 </template>
 
 <script>
 import ModalUser from "@/views/personal/users/components/ModalUser.vue";
 export default {
-  props: ["id", "status", "name"],
+  props: {
+    user: {
+      type: Object,
+    },
+  },
 
   components: {
     ModalUser,

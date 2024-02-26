@@ -7,7 +7,7 @@
   >
     <v-card>
       <v-toolbar dark color="#232323">
-        <v-toolbar-title>{{ name }}</v-toolbar-title>
+        <v-toolbar-title>{{ user.name }}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-btn icon dark @click="close()">
@@ -15,13 +15,13 @@
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <EvolutionUser :propIdUser="idUser">
+      <EvolutionUser :propIdUser="user.id">
         <template v-slot:top>
           <v-btn
             outlined
-            :color="!status ? 'green' : 'red'"
+            :color="!user.is_active ? 'green' : 'red'"
             @click="changeStatusUser()"
-            >{{ !status ? "Ativar" : "Desativar" }}</v-btn
+            >{{ !user.is_active ? "Ativar" : "Desativar" }}</v-btn
           >
         </template>
       </EvolutionUser>
@@ -35,14 +35,8 @@ import user from "@/services/http/user";
 
 export default {
   props: {
-    idUser: {
-      type: Number,
-    },
-    name: {
-      type: String,
-    },
-    status: {
-      type: Boolean,
+    user: {
+      type: Object,
     },
     dialog: {
       type: Boolean,
@@ -60,8 +54,13 @@ export default {
 
   methods: {
     async changeStatusUser() {
+      const formUser = {
+        ...this.user,
+        is_active: !this.user.is_active,
+        pay_date: new Date(),
+      };
       try {
-        await user(this.idUser).update({ is_active: !this.status });
+        await user(this.user.id).update(formUser);
       } catch (error) {
         console.error(error);
       } finally {
