@@ -12,7 +12,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -26,7 +26,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -40,7 +40,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -54,7 +54,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -68,7 +68,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -82,7 +82,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -96,7 +96,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -110,7 +110,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -124,7 +124,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="py-0">
@@ -138,7 +138,7 @@
           class="rounded-lg"
           dense
           color="#777777"
-          background-color="#EEEEEE"
+          background-color="#000"
         ></v-text-field>
       </v-col>
       <v-col cols="12" class="d-flex justify-end">
@@ -152,6 +152,7 @@
 
 <script>
 import user from "@/services/http/user";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -160,11 +161,17 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters({
+      currentUser: "getUser",
+    }),
+  },
+
   methods: {
     async createCircumferences() {
       const validadeForm = this.$refs.formCreateCircumference.validate();
       if (validadeForm) {
-        await user()
+        await user(this.currentUser.id)
           .circumferences()
           .store(this.form, {
             notification: true,
@@ -173,7 +180,7 @@ export default {
       }
     },
     async getCircumferences() {
-      this.dados = await user(1).circumferences().show();
+      this.dados = await user(this.currentUser.id).circumferences().show();
       console.log("circumferences", this.dados);
     },
   },
